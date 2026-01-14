@@ -42,6 +42,11 @@ document.getElementById('converter-form').addEventListener('submit', async funct
     const toCurrency = document.getElementById('to-currency').value;
     const amount = parseFloat(document.getElementById('amount').value);
 
+    if (!fromCurrency || !toCurrency) {
+        document.getElementById('result').textContent = 'Please select currencies from the dropdowns.';
+        return;
+    }
+
     if (fromCurrency === toCurrency) {
         document.getElementById('result').textContent = 'Please select different currencies.';
         return;
