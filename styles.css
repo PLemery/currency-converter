@@ -88,7 +88,11 @@ button:active {
     padding: 15px;
     background-color: #e8f8f5;
     border-radius: 8px;
-    min-height: 20px;
+    min-height: 0;
+}
+
+#result:empty {
+    display: none;
 }
 
 #exchange-rates {
