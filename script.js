@@ -1,14 +1,13 @@
-// ExchangeRate-API's open endpoint needs no API key, so nothing secret ships to the browser.
-const API_BASE = 'https://open.er-api.com/v6/latest';
+const API_URL = `https://v6.exchangerate-api.com/v6/993b261a77527221918ea5a9/latest/USD`;
 
 // Fetch and display exchange rates on page load
 window.addEventListener('load', async () => {
     try {
-        const response = await fetch(`${API_BASE}/USD`);
+        const response = await fetch(API_URL);
         const data = await response.json();
 
         if (data.result === "success") {
-            displayExchangeRates(data.rates);
+            displayExchangeRates(data.conversion_rates);
         } else {
             document.getElementById('rates-list').innerHTML = '<li>Failed to load exchange rates.</li>';
         }
@@ -54,11 +53,11 @@ document.getElementById('converter-form').addEventListener('submit', async funct
     }
 
     try {
-        const response = await fetch(`${API_BASE}/${fromCurrency}`);
+        const response = await fetch(`https://v6.exchangerate-api.com/v6/993b261a77527221918ea5a9/latest/${fromCurrency}`);
         const data = await response.json();
 
         if (data.result === "success") {
-            const rate = data.rates[toCurrency];
+            const rate = data.conversion_rates[toCurrency];
             const convertedAmount = (amount * rate).toFixed(2);
 
             document.getElementById('result').textContent =
